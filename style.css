@@ -1,0 +1,102 @@
+/* 背景画像の設定 */
+body {
+    background-image: url('src/背景.png'); /* 背景画像のパス */
+}
+
+
+/* コンテナのスタイル */
+.container {
+    max-width: 400px; /* 最大幅 */
+    margin: 0 auto; /* 中央寄せ */
+    text-align: center; /* テキスト中央寄せ */
+}
+
+
+
+/* タイトルエリアのスタイル */
+.title-container {
+    position: relative; /* 相対配置 */
+    background-color: white;
+    border: 2px solid #C8302E; /* 内側の赤い線 */
+    box-shadow: 0 0 0 8px white, 0 0 0 12px #C8302E; /* 白い間隔と外側の赤い線 */
+    padding: 35px 35px;
+    margin: 55px auto; /* 上下のマージン */
+    max-width: 220px; /* タイトルの最大幅 */
+}
+
+/* タイトルのスタイル */
+h1 {
+    margin: 0; /* マージンをリセット */
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+    font-family: 'YuMincho +36p Kana';
+    line-height: 1.1; /* 行間の調整 */
+    letter-spacing: 0.05em; /* 文字間の調整 */
+}
+
+/* 梅の花のスタイル */
+.plum-flower {
+    position: absolute; /* 絶対配置 */
+    background-image: url('src/梅.png'); /* 梅の花の画像 */
+    background-size: contain; /* 画像のサイズをコンテナに合わせる */
+}
+
+/* 雲と花のスタイル */
+.crowd-flower {
+    position: absolute; /* 絶対配置 */
+    background-image: url('src/雲　花.png'); /* 雲と花の画像 */
+    background-size: contain; /* 画像のサイズをコンテナに合わせる */
+}
+
+/* 梅の花の装飾（左上） */
+.plum-top-left {
+    width: 55px; /* 梅の花の幅 */
+    height: 55px; /* 梅の花の高さ */
+    top: -1px; /* 上の位置 */
+    left: -2px; /* 左の位置 */
+}
+
+/* 雲と花の装飾（右下） */
+.plum-bottom-right {
+    width: 110px; /* 雲と花の幅 */
+    height: 110px; /* 雲と花の高さ */
+    bottom: -25px; /* 下の位置 */
+    right: -13px; /* 右の位置 */
+}
+
+
+
+/* おみくじ画像のコンテナスタイル */
+.img-container {
+    margin-bottom: 50px; /* 下のマージン */
+}
+
+/* おみくじ画像のスタイル */
+.img-container img {
+    max-width: 180px; /* 画像の最大幅 */
+    width: 100%; /* レスポンシブ対応 */
+    height: auto; /* アスペクト比を維持 */
+}
+
+
+
+/* おみくじを引くボタンコンテナのスタイル */
+.button-container {
+    display: flex; /* フレックスボックスを使用 */
+    justify-content: center; /* 中央寄せ */
+    margin: 40px 0; /* 上下のマージン */
+}
+
+/* おみくじを引くボタンのスタイル */
+#draw-omikuji {
+    background-color: #C8302E;
+    color: white;
+    border: 1px solid white;
+    padding: 15px 70px;
+    font-size: 22px;
+    font-weight: normal; /* フォントの太さ */
+    font-family: 'YuMincho +36p Kana'; /* フォントファミリー */
+    cursor: pointer; /* カーソルをポインターに変更 */
+    box-shadow: 0 0 0 5px #C8302E; /* 赤い外側の影 */
+}
