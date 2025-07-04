@@ -7,12 +7,24 @@ document.addEventListener('DOMContentLoaded', () => {
         kyo:      'src/凶.png'
     };
 
+    // 初期のおみくじ画像のパスを保存しておきます。
+    const initialOmikujiImageSrc = 'src/おみくじ画像.png';
+
     // HTML要素を取得します
     const drawOmikujiButton = document.getElementById('draw-omikuji');
     const omikujiImage = document.getElementById('omikuji-image');
 
-    // ボタンのクリックイベントリスナーを設定します
+    // ここが動作する場所
     drawOmikujiButton.addEventListener('click', () => {
+        // 現在のボタンのテキストを確認します
+        if (drawOmikujiButton.textContent === 'もう一度引く') {
+            // ボタンが「もう一度引く」の場合、初期状態に戻す
+            omikujiImage.src = initialOmikujiImageSrc;
+            omikujiImage.alt = 'おみくじ画像';
+            drawOmikujiButton.textContent = 'おみくじを引く'; // ボタンのテキストを元に戻す
+            return; // ここで処理を終了し、おみくじを引く処理には進まない
+        }
+
         // 0から1の間の乱数を生成します
         const n = Math.random();
 
@@ -41,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // 結果をアラートで表示します
         alert('あなたのおみくじ結果は「' + resultText + '」でした！');
 
-        // ボタンのテキストを「もう一度引く」
-         drawOmikujiButton.textContent = 'もう一度引く';
+        // ボタンのテキストを「もう一度引く」に変更
+        drawOmikujiButton.textContent = 'もう一度引く';
     });
 });
