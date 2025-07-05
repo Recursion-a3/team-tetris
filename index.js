@@ -59,8 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
             omikujiImage.src = resultImageSrc;
             omikujiImage.alt = resultText;
 
-            // 結果をアラートで表示します
-            alert('あなたのおみくじ結果は「' + resultText + '」でした！');
+            // アラート機能を削除しました
+            // alert('あなたのおみくじ結果は「' + resultText + '」でした！');
 
             // ボタンのテキストを「もう一度引く」に変更
             drawOmikujiButton.textContent = 'もう一度引く';
