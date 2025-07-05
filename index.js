@@ -1,59 +1,81 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // おみくじ結果の画像パスを定義します。
-    const omikujiImages = {
-        daikichi: 'src/大吉.png',
-        chukichi: 'src/中吉.png',
-        kichi:    'src/吉.png',
-        kyo:      'src/凶.png'
+    const omikujiResults = {
+        daikichi: {
+            text: '大吉',
+            msg: 'GitHub Sponsors を通じて太っ腹なスポンサーがつきます。これであなたの開発は安泰です!',
+            food: 'メンチカツ',
+            animal: '孔雀',
+        },
+        chukichi: {
+            text: '中吉',
+            msg: '提出したコードにちょっとした問題があるけど、営業の努力で顧客に気づかれない！後で直しましょう！',
+            food: 'ハンバーグ',
+            animal: '麒麟',
+        },
+        kichi: {
+            text: '吉',
+            msg: '綿あめのようにふわふわした案件が下されるでしょう。めげずに己の信念を貫き、仕事を終わらせましょう。',
+            food: '餃子',
+            animal: '白虎',
+        },
+        kyo: {
+            text: '凶',
+            msg: 'まるで時間が過ぎたスパゲッティのようなコードで運営を任されました。おとなしくゼロからコードを書き直そう。',
+            food: 'パスタ',
+            animal: '赤龍',
+        }
     };
 
-    // 初期のおみくじ画像のパスを保存しておきます。
-    const initialOmikujiImageSrc = 'src/おみくじ画像.png';
-
-    // HTML要素を取得します
+    // index.htmlでのおみくじ引く処理
     const drawOmikujiButton = document.getElementById('draw-omikuji');
-    const omikujiImage = document.getElementById('omikuji-image');
+    if (drawOmikujiButton) {
+        drawOmikujiButton.addEventListener('click', () => {
+            // 乱数で結果を決定
+            const n = Math.random();
+            let key;
+            
+            if (n < 0.25) {
+                key = 'daikichi';
+            } else if (n < 0.50) {
+                key = 'chukichi';
+            } else if (n < 0.75) {
+                key = 'kichi';
+            } else {
+                key = 'kyo';
+            }
+            
+            // 結果をlocalStorageに保存
+            localStorage.setItem('omikujiResult', JSON.stringify(omikujiResults[key]));
+            
+            // 結果ページに遷移
+            window.location.href = 'result.html';
+        });
+    }
 
-    // ここが動作する場所
-    drawOmikujiButton.addEventListener('click', () => {
-        // 現在のボタンのテキストを確認します
-        if (drawOmikujiButton.textContent === 'もう一度引く') {
-            // ボタンが「もう一度引く」の場合、初期状態に戻す
-            omikujiImage.src = initialOmikujiImageSrc;
-            omikujiImage.alt = 'おみくじ画像';
-            drawOmikujiButton.textContent = 'おみくじを引く'; // ボタンのテキストを元に戻す
-            return; // ここで処理を終了し、おみくじを引く処理には進まない
+    // result.htmlでの結果表示処理
+    const resultTitle = document.getElementById('result-title');
+    const resultMessage = document.getElementById('result-message');
+    const luckyFood = document.getElementById('lucky-food');
+    const luckyAnimal = document.getElementById('lucky-animal');
+    const drawAgainButton = document.getElementById('draw-again');
+
+    if (resultTitle && resultMessage && luckyFood && luckyAnimal) {
+        // localStorageから結果を取得
+        const savedResult = localStorage.getItem('omikujiResult');
+        if (savedResult) {
+            const result = JSON.parse(savedResult);
+            resultTitle.textContent = result.text;
+            resultMessage.textContent = result.msg;
+            luckyFood.textContent = result.food;
+            luckyAnimal.textContent = result.animal;
         }
+    }
 
-        // 0から1の間の乱数を生成します
-        const n = Math.random();
-
-        let resultText = ''; // 結果のテキストを格納
-        let resultImageSrc = ''; // 結果の画像パスを格納
-
-        // 乱数nに応じて結果を決定します
-        if (n < 0.25) { // 例: 0% ～ 25% の確率
-            resultText = '大吉';
-            resultImageSrc = omikujiImages.daikichi;
-        } else if (n < 0.50) { // 例: 25% ～ 50% の確率
-            resultText = '凶';
-            resultImageSrc = omikujiImages.kyo;
-        } else if (n < 0.75) { // 例: 50% ～ 75% の確率
-            resultText = '中吉';
-            resultImageSrc = omikujiImages.chukichi;
-        } else { // 例: 75% ～ 100% の確率
-            resultText = '吉';
-            resultImageSrc = omikujiImages.kichi;
-        }
-
-        // おみくじ画像を更新します
-        omikujiImage.src = resultImageSrc;
-        omikujiImage.alt = resultText;
-
-        // 結果をアラートで表示します
-        alert('あなたのおみくじ結果は「' + resultText + '」でした！');
-
-        // ボタンのテキストを「もう一度引く」に変更
-        drawOmikujiButton.textContent = 'もう一度引く';
-    });
+    // もう一度引くボタンの処理
+    if (drawAgainButton) {
+        drawAgainButton.addEventListener('click', () => {
+            localStorage.removeItem('omikujiResult');
+            window.location.href = 'index.html';
+        });
+    }
 });
