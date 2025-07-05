@@ -1,6 +1,7 @@
 /* 背景画像の設定 */
 body {
     background-image: url('src/背景.png'); /* 背景画像のパス */
+    font-family: 'YuMincho +36p Kana'; /* フォントファミリー */
 }
 
 
@@ -10,7 +11,6 @@ body {
     margin: 0 auto; /* 中央寄せ */
     text-align: center; /* テキスト中央寄せ */
 }
-
 
 
 /* タイトルエリアのスタイル */
@@ -30,7 +30,7 @@ h1 {
     font-size: 30px;
     font-weight: bold;
     color: #333;
-    font-family: 'YuMincho +36p Kana';
+    /* font-family: 'YuMincho +36p Kana'; */
     line-height: 1.1; /* 行間の調整 */
     letter-spacing: 0.05em; /* 文字間の調整 */
 }
@@ -61,10 +61,18 @@ h1 {
 .plum-bottom-right {
     width: 110px; /* 雲と花の幅 */
     height: 110px; /* 雲と花の高さ */
-    bottom: -25px; /* 下の位置 */
+    bottom: -22px; /* 下の位置 */
     right: -13px; /* 右の位置 */
 }
 
+/* 雲と花の装飾（左上） */
+.plum-crowd-top-left {
+    width: 110px; /* 雲と花の幅 */
+    height: 110px; /* 雲と花の高さ */
+    top: 120px; /* 上の位置 */
+    left: -10px; /* 右の位置 */
+    rotate: 180deg; /* 180度回転 */
+}
 
 
 /* おみくじ画像のコンテナスタイル */
@@ -79,8 +87,6 @@ h1 {
     height: auto; /* アスペクト比を維持 */
 }
 
-
-
 /* おみくじを引くボタンコンテナのスタイル */
 .button-container {
     display: flex; /* フレックスボックスを使用 */
@@ -93,10 +99,36 @@ h1 {
     background-color: #C8302E;
     color: white;
     border: 1px solid white;
-    padding: 15px 70px;
+    padding: 15px 88px;
     font-size: 22px;
     font-weight: normal; /* フォントの太さ */
-    font-family: 'YuMincho +36p Kana'; /* フォントファミリー */
+    /* font-family: 'YuMincho +36p Kana'; フォントファミリー */
     cursor: pointer; /* カーソルをポインターに変更 */
     box-shadow: 0 0 0 5px #C8302E; /* 赤い外側の影 */
+}
+
+/* 横線のスタイル */
+hr {
+    width: 100%; /* 横幅を100%に設定 */
+    border: none; /* デフォルトのボーダーを削除 */
+    height: 3px; /* 高さを1pxに設定 */
+    background-color: #C8302E; /* 赤い色 */
+    margin: 20px 0; /* 上下のマージン */
+}
+
+/* 縦線のスタイル */
+#vertical-bar {
+    margin-left: 20px;  /* 左のマージン */
+    margin-right: 20px; /* 右のマージン */
+}
+
+
+/* --- 開発者ページのスタイル ---- */
+/* 開発者ページのタイトル装飾 */
+.creators-heading-container {
+    padding-bottom: 30px;
+}
+
+.creators-list {
+    font-size: xx-large;
 }
